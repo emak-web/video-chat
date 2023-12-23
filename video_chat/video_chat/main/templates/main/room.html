@@ -1,0 +1,42 @@
+{% extends "main/index.html" %}
+{% load static %}
+
+{% block title %}{{ room_name }}{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'main/room.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<header>
+    <button id="leave-btn">Leave Room</button>
+</header>
+<div id="videos">
+    <div id="remote">
+        <video class="video-player" id="remote-user" autoplay playsinline></video>
+        <p id="remote-user-name"></p>
+    </div>
+    <div id="local">
+        <video class="video-player" id="local-user" autoplay playsinline></video>
+        <p id="local-user-name">{{ username }}</p>
+    </div>
+</div>
+<div id="controls">
+    <button class="controler" id="mic">
+        <img src="{% static 'main/mic.png' %}" id="mic-img">
+    </button>
+    <button class="controler" id="cam">
+        <img src="{% static 'main/record.png' %}" id="record-img">
+    </button>
+</div>
+
+{{ room_name|json_script:"room-name" }}
+{{ username|json_script:"username" }}
+
+{% endblock %}
+
+
+{% block script %}
+<script src="{% static 'main/main.js' %}"></script>
+{% endblock %}

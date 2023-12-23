@@ -1,0 +1,46 @@
+{% extends "main/index.html" %}
+{% load static %}
+
+{% block title %}Video Chat{% endblock %}
+
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'main/lobby.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<menu>
+    <form method="post">
+        {% csrf_token %}
+        <p id="title">Войти в конференцию</p>
+        <input class="input" id="user-name-input" type="text" name="username" placeholder="Имя пользователя" value="{{ username }}">
+        <input class="input" id="room-name-input" type="text" name="roomname" placeholder="Имя конференции">
+        <button id="join-btn" type="submit">Войти</button>
+    </form>
+    {% if error %}
+    <p id="error">Неправильное имя пользователя или конференции</p>
+    {% endif %}
+</menu>
+
+{% endblock %}
+
+
+{% block script %}
+<!-- <script>
+    document.querySelector('#user-name-input').focus();
+    document.querySelector('#room-name-input').onkeyup = function(e) {
+        if (e.keyCode === 13) {  // enter, return
+            document.querySelector('#join-btn').click();
+        }
+    };
+
+    document.querySelector('#join-btn').onclick = function(e) {
+        var roomName = document.querySelector('#room-name-input').value;
+        if (roomName) {
+            window.location.pathname = '/' + roomName + '/';
+        }
+    };
+</script> -->
+{% endblock %}
